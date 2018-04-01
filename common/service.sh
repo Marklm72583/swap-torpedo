@@ -19,22 +19,25 @@
 # awk is required, toybox is ok if it has it
 
 # Returns
-#   0 - no swap, or no swap in /dev, or swap killed off
+#   0 - no swap, or no swap in /dev, or time's up
 
 # Exit if no swap in use,
 #   wish virtual beer upon the enlightened rom devs
 
 alias SWAPT='grep -i SwapTotal /proc/meminfo | tr -d "[a-zA-Z :]"'
 
-if [ `SWAPT` -eq 0  ] ; then
-    sleep 2
-    if [ `SWAPT` -eq 0  ] ; then
-        sleep 3
-        if [ `SWAPT` -eq 0  ] ; then
-             exit 0
-        fi
+TL=45
+Step=3
+k=0
+
+while [ `SWAPT` -eq 0  ]
+do
+    k=$(( $k + $Step ))
+    if [ $k -gt $TL  ] ; then
+        exit 0
     fi
-fi
+    sleep $Step
+done
 
 SR="\/dev\/"
 PS="/proc/swap*"
@@ -56,7 +59,7 @@ fi
 DIE=`awk -v SBD="$SR" ' $0 ~ SBD {
       for ( i=1;i<=NF;i++ )
         {
-          if ( $i ~ SBD )
+          if ( $i ~ ( "^" SBD ) )
            {
               printf "%s;", $i
            }

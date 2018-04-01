@@ -4,11 +4,11 @@
 
 By EarlyMon @ XDA - version 1.1
 
-Swap is a way to expand your RAM using clever software and some unused storage space. You see it a lot in Android as zram or vmswap.
+Swap is a way to expand your RAM using clever software and some unused storage space. You see it a lot in Android as zram or vmswap, that is, compressed-memory swap. Storage-based swap is fine, compressed-memory swap - not so much.
 
 Swap is a fine thing for desktops with sufficient resources and for Android devices really hampered with too little ram.
 
-It was originally intended for devices with less than 1 GB RAM. 
+On Android it was originally intended for devices with less than 1 GB RAM. 
 
 If you have an Android One or another small-memory device, this is NOT the module for you. 
 
@@ -18,7 +18,7 @@ Do you suffer from lag, random UI pauses, apps not running correctly and consist
 
 All of that is almost always caused by having swap implemented and the Swap Torpedo fixes it. 
 
-Manufacturers, including Google, have fallen in love with swap because it allows your Android to synthetically appear better at multitasking. In reality, it ruins multitasking. 
+Manufacturers, including Google, have fallen in love with compressed-memory swap because it allows your Android to synthetically appear better at multitasking. In reality, it ruins multitasking. 
 
 Why? For large memory devices you want the swap space to be at minimum the square root of your RAM size and ideally the same size as, or up to double the size of, your RAM. 
 
@@ -52,6 +52,7 @@ v1.1 - 2018 April 1
 
 Detached background processing, added Pixel and similar support. 
 Expanded zram command sequence for devices requiring stricter adherence to the rtfm.
+Waits up to 45 seconds for compressed-memory swap to activate.
 
 v1.0 - 2018 March 17 -  initial release 
 
