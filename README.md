@@ -2,7 +2,7 @@
 
 ## Universal swap (zram, vmswap, etc etc) destroyer - run faster and more reliably!
 
-By EarlyMon - version 1.0
+By EarlyMon @ XDA - version 1.1
 
 Swap is a way to expand your RAM using clever software and some unused storage space. You see it a lot in Android as zram or vmswap.
 
@@ -16,8 +16,7 @@ But if you have 2 GB of RAM or more, you want this.
 
 Do you suffer from lag, random UI pauses, apps not running correctly and consistently, and background apps failing even when you have them marked for protection? Do you have to reboot every day or so to restore speed? 
 
-All of that is 
-almost always caused by having swap implemented and the Swap Torpedo fixes it. 
+All of that is almost always caused by having swap implemented and the Swap Torpedo fixes it. 
 
 Manufacturers, including Google, have fallen in love with swap because it allows your Android to synthetically appear better at multitasking. In reality, it ruins multitasking. 
 
@@ -44,14 +43,18 @@ This module was developed entirely on an honor View 10.
 
 ## Notes -
 
-Pixels not supported at present
-
 May not work on all devices
 
 
 ## Changelog - 
 
+v1.1 - 2018 April 1
+
+Detached background processing, added Pixel and similar support. 
+Expanded zram command sequence for devices requiring stricter adherence to the rtfm.
+
 v1.0 - 2018 March 17 -  initial release 
+
 
 ## Support - 
 [XDA thread](https://forum.xda-developers.com/apps/magisk/module-swap-torpedo-run-faster-reliably-t3766883) 

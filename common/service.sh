@@ -24,15 +24,26 @@
 # Exit if no swap in use,
 #   wish virtual beer upon the enlightened rom devs
 
-SWAPT=`grep SwapTotal /proc/meminfo | tr -d "[a-zA-Z :]"`
+alias SWAPT='grep -i SwapTotal /proc/meminfo | tr -d "[a-zA-Z :]"'
 
-if [ $SWAPT -eq 0  ] ; then
-        exit 0
+if [ `SWAPT` -eq 0  ] ; then
+    sleep 2
+    if [ `SWAPT` -eq 0  ] ; then
+        sleep 3
+        if [ `SWAPT` -eq 0  ] ; then
+             exit 0
+        fi
+    fi
 fi
 
 SR="\/dev\/"
 PS="/proc/swap*"
-SO="swapoff" 
+
+if [ -f /system/bin/swapoff ] ; then
+    SO="/system/bin/swapoff"
+else
+    SO="swapoff"
+fi
 
 # You would think that there's only ever zram0
 # And you would be wrong
@@ -42,15 +53,42 @@ SO="swapoff"
 # Find all swapregions and target each one for swapoff
 # Don't assume it's in the first field of swaps, find it
 
-eval `awk -v SBD="$SR" -v SRO="$SO" ' $0 ~ SBD {
+DIE=`awk -v SBD="$SR" ' $0 ~ SBD {
       for ( i=1;i<=NF;i++ )
         {
           if ( $i ~ SBD )
            {
-              printf "%s %s;", SRO, $i
+              printf "%s;", $i
            }
         }
       }' $PS`
+
+saveifs=$IFS
+IFS=';'
+
+# I could have put all this in awk and just eval'd it 
+# But where's the fun in that
+
+for i in $DIE
+do
+    case $i in
+        *zram*)
+              j=`echo $i | sed 's/.*zram//'`
+             ( ( 
+                 echo $j > /sys/class/zram-control/hot_remove
+                 echo 1 > /sys/block/zram${j}/reset
+                 $SO $i
+              ) & )
+              ;;
+        *)
+              if [ -n $i ]; then
+                  ( ( $SO $i ) & ) 
+              fi
+              ;;
+    esac
+done
+
+IFS=$saveifs
 
 # Enjoy a better Android experience, and be kind to someone
 
