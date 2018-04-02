@@ -1,10 +1,10 @@
 # Swap Torpedo - A Magisk Module
 
-## Universal swap (zram, vmswap, etc etc) destroyer - run faster and more reliably!
+## Universal compressed-memory swap (zram, etc etc) destroyer - run faster and more reliably!
 
 By EarlyMon @ XDA - version 1.1
 
-Swap is a way to expand your RAM using clever software and some unused storage space. You see it a lot in Android as zram or vmswap, that is, compressed-memory swap. Storage-based swap is fine, compressed-memory swap - not so much.
+Swap is a way to expand your RAM using clever software and some unused storage space. You see it a lot in Android as zram or vmswap, that is, compressed-memory swap. Storage-based swap is fine, compressed-memory swap, like zram - not so much.
 
 Swap is a fine thing for desktops with sufficient resources and for Android devices really hampered with too little ram.
 
