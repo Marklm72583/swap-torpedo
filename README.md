@@ -43,7 +43,9 @@ This module was developed entirely on an honor View 10.
 
 ## Notes -
 
-May not work on all devices
+Some phones may need a few minutes after boot to clean up swap/zram - not all, just some - and that's completely normal 
+
+May not work on all devices but will probably work for you - visit the XDA thread for help 
 
 
 ## Changelog - 
